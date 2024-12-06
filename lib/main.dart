@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        backgroundColor: Color(0xFFF3EDF7),
+        // backgroundColor: Color.fromARGB(232, 222, 248, 255),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
