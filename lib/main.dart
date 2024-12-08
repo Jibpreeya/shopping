@@ -25,7 +25,12 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFFef7ff)),
+        fontFamily: 'Roboto',
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFFFEF7FF),
+          primary: const Color(0xFF65558F),
+          background: const Color(0xFFFEF7FF),
+        ),
       ),
       home: const MyHomePage(title: ''),
       // initialRoute: '/$initialRoute',
@@ -66,24 +71,64 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+// For reset to the shopping tab
+  void resetSelectedIndex() {
+    setState(() {
+      _selectedIndex = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex], // Display the selected page
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        // backgroundColor: Color.fromARGB(232, 222, 248, 255),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Shopping',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt),
-            label: 'Cart',
-          ),
-        ],
+      bottomNavigationBar: _selectedIndex == 1
+          ? null
+          : BottomNavigationBar(
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+              backgroundColor: const Color(0xFFF3EDF7),
+              iconSize: 15,
+              selectedLabelStyle: const TextStyle(
+                fontSize: 8, // Adjust size for selected label
+                fontWeight: FontWeight.bold, // Optional: Make it bold
+              ),
+              unselectedLabelStyle: const TextStyle(
+                fontSize: 8, // Adjust size for unselected label
+              ),
+              items: [
+                BottomNavigationBarItem(
+                  icon: _buildIconWithBorderRadius(
+                      Icons.stars, _selectedIndex == 0),
+                  label: 'Shopping',
+                  backgroundColor: Color(0xFF65558F),
+                ),
+                BottomNavigationBarItem(
+                  icon: _buildIconWithBorderRadius(
+                      Icons.stars, _selectedIndex == 1),
+                  label: 'Cart',
+                  backgroundColor: Color(0xFF65558F),
+                ),
+              ],
+            ),
+    );
+  }
+
+  Widget _buildIconWithBorderRadius(IconData icon, bool isSelected) {
+    return Container(
+      decoration: BoxDecoration(
+        color: isSelected
+            ? Color(0xFFE8DEF8)
+            : Colors.transparent, // Background color for selected
+        borderRadius: BorderRadius.circular(30), // Apply borderRadius
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      child: Icon(
+        icon,
+        color: isSelected
+            ? Colors.black
+            : Colors.grey, // Change icon color based on selection
+        // size: 15, // Icon size
       ),
     );
   }
