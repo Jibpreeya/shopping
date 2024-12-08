@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shopping/model/product.dart';
+import 'package:shopping/widgets/Error_state.dart';
 
+/// RECOMMENDED PRODUCTS ///
 Future<List<Product>> fetchRecommendedProducts() async {
   final response = await http
       .get(Uri.parse('http://192.168.1.132:8080/recommended-products'));
@@ -17,6 +19,7 @@ Future<List<Product>> fetchRecommendedProducts() async {
   }
 }
 
+/// LATEST PRODUCTS ///
 Future<List<Product>> fetchLatestProducts() async {
   final response =
       await http.get(Uri.parse('http://192.168.1.132:8080/products?limit=20'));
