@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shopping/model/product.dart';
 import 'package:http/http.dart' as http;
 
 /// ORDER CHECKOUT  ///
 Future<void> orderProducts(BuildContext context) async {
-  final Uri url = Uri.parse('http://192.168.1.132:8080/orders/checkout');
+  final apiUrl = dotenv.env['API_URL'];
+  final Uri url = Uri.parse('${apiUrl}/orders/checkout');
 
   final Map<String, dynamic> body = {
     "products": [0],
