@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 /// ORDER CHECKOUT  ///
 Future<void> orderProducts(BuildContext context) async {
   final apiUrl = dotenv.env['API_URL'];
-  final Uri url = Uri.parse('${apiUrl}/orders/checkout');
+  final Uri url = Uri.parse('$apiUrl/orders/checkout');
 
   final Map<String, dynamic> body = {
     "products": [0],

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shopping/screens/cart_screen.dart';
 import 'package:shopping/screens/shopping_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  try {
+    await dotenv.load(fileName: ".env");
+    print("Environment variables loaded successfully.");
+  } catch (e) {
+    print("Error loading .env file: $e");
+  }
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

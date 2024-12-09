@@ -8,7 +8,7 @@ final apiUrl = dotenv.env['API_URL'];
 
 /// RECOMMENDED PRODUCTS ///
 Future<List<Product>> fetchRecommendedProducts() async {
-  final response = await http.get(Uri.parse('${apiUrl}/recommended-products'));
+  final response = await http.get(Uri.parse('$apiUrl/recommended-products'));
 
   if (response.statusCode == 200) {
     // Parse the JSON data
@@ -23,7 +23,7 @@ Future<List<Product>> fetchRecommendedProducts() async {
 
 /// LATEST PRODUCTS ///
 Future<List<Product>> fetchLatestProducts() async {
-  final response = await http.get(Uri.parse('${apiUrl}/products?limit=20'));
+  final response = await http.get(Uri.parse('$apiUrl/products?limit=20'));
 
   if (response.statusCode == 200) {
     final Map<String, dynamic> data = json.decode(response.body);
