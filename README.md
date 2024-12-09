@@ -1,4 +1,4 @@
-# shopping
+# Shopping
 
 This is a Flutter project designed as a homework test for an interview. The goal of this project is to implement a shopping app with key functionalities such as viewing products, adding items to a cart, and proceeding to checkout.
 
